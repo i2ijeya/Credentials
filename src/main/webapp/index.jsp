@@ -54,7 +54,7 @@
 <body>
 	<div class="container">
 		<div class="masthead">
-			<img src="images/login/Healthcare-Collaborative-final-new-01.jpg"
+			<img src="images/login/mrtrust_main_banner.jpg"
 				alt="header image">
 		</div>
 	</div>
