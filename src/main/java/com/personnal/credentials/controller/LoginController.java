@@ -20,17 +20,27 @@ public class LoginController {
 		System.out.println("Login Controller Cons");
 	}
 	
-	@RequestMapping(value = "/register", method=RequestMethod.GET)
+	@RequestMapping(value = "/registerUser", method=RequestMethod.GET)
 	public String registerPage(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
-		System.out.println("Entering the controller Login");
+		System.out.println("Entering the register controller 1");
 		Map<String,String[]> parameters = req.getParameterMap();
+		System.out.println(req.getParameter("email"));
+		model.addAttribute("success","Logged in Succesfully");
+		return "user/registration";
+	}
+	
+	@RequestMapping(value = "/register", method=RequestMethod.GET)
+	public String register(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
+		System.out.println("Entering the register controller");
+		Map<String,String[]> parameters = req.getParameterMap();
+		System.out.println(parameters);
 		model.addAttribute("success","Logged in Succesfully");
 		return "user/registration";
 	}
 	
 	@RequestMapping(value = "/login", method=RequestMethod.POST)
 	public String loginVerify(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
-		System.out.println("Entering the controller Login");
+		System.out.println("Entering the login controller");
 		Map<String,String[]> parameters = req.getParameterMap();
 		System.out.println(req.getParameter("email"));
 		model.addAttribute("mail_id",req.getParameter("email"));
