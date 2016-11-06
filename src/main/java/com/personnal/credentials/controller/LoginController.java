@@ -63,4 +63,24 @@ public class LoginController {
 		
 		return validUser;
 	}
+	
+	public static void main(String args[]) {
+		int n =2;
+		int fibonacciResult[] = new int[n];
+		
+		if(n<2) {
+			System.out.println("The number should be greater than 2");
+			System.exit(0);
+		}
+		fibonacciResult[0]=0;
+		fibonacciResult[1]=1;
+		for(int i=2 ;i<n;i++) {
+			fibonacciResult[i] = fibonacciResult[i-1] + fibonacciResult[i-2];
+		}
+		for(int i=0;i<n;i++) {
+			System.out.print(fibonacciResult[i]+",");
+		}
+		
+		
+	}
 }

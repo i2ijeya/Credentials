@@ -46,7 +46,7 @@
 				<arg line="./startup.sh"/>
 		    </exec> -->
 			<exec dir="${tomcat.bin.dir}" executable="cmd">
-				<arg value="/C"/>
+				<arg value="/C"/>vn h.
 				<arg line="startup.bat" />
 			</exec>
 		</target>

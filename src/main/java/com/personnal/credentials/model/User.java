@@ -12,7 +12,6 @@ import javax.persistence.Table;
 public class User {
 
 	private int id;
-	private String nickname;
 	private String email;
 	private String password;
 	
@@ -25,15 +24,6 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Column(name="nick_name")
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
 	}
 
 	@Id
