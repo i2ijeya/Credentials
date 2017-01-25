@@ -26,7 +26,7 @@ public class LoginController {
 		Map<String,String[]> parameters = req.getParameterMap();
 		System.out.println(req.getParameter("email"));
 		model.addAttribute("success","Logged in Succesfully");
-		return "user/registration";
+		return "hello";
 	}
 	
 	@RequestMapping(value = "/register", method=RequestMethod.GET)

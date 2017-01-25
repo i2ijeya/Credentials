@@ -28,22 +28,45 @@
     	alert("hai");
         location.href = "/registration.html";
     };
+    
+    $(".form-signin").submit(function(event) {
+
+        var success = true;
+
+        $.ajax({
+            url: "/validate",
+            type: "GET",
+            async: false, //block until we get a response
+            data: { id : $("#idInput").val() },
+            success: function(error) {
+                if (error) {
+                    $("#errorContainer").html(error);
+                    success = false;
+                }
+            }
+        });
+
+        return success;
+
+    });
 </script>
 </head>
 <body>
 	<div class="container">
 		<div class="masthead">
-			<img src="images/login/Healthcare-Collaborative-final-new-01.jpg"
+			<img src="images/login/mrtrust_main_banner.jpg"
 				alt="header image">
 		</div>
 	</div>
 
 
-
+<c:if test="${not empty error}">
+   Cannot Login: ${error}
+</c:if>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<form class="form-signin" action="/credential/login" method="post">
+				<form name="form-signin" class="form-signin" action="/credential/login" method="post">
 					<form:errors path="*" cssClass="errorblock" element="div"/>
 					<h2 class="form-signin-heading">Sign In</h2>
 					<input type="email" class="form-control"
