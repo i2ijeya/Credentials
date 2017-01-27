@@ -2,6 +2,7 @@ package com.personnal.credentials.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -31,5 +32,17 @@ public class UserImpl implements UserDAO{
 		// TODO Auto-generated method stub
 		
 		return null;
+	}
+
+	@Override
+	public void insert(User user) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.save(user);
+		session.getTransaction().commit();
+		session.close();
+		//Query query = session.createQuery("INSERT INTO ");
 	}
 }

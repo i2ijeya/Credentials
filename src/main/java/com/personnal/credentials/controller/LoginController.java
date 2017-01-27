@@ -6,6 +6,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.service.spi.InjectService;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
-public class LoginController {
+import com.personnal.credentials.model.User;
+import com.personnal.credentials.service.LoginService;
 
+@Controller
+public class LoginController implements ApplicationContextAware{
+	private ApplicationContext applicationContext;  
 	public LoginController() {
 		System.out.println("Login Controller Cons");
 	}
 	
 	@RequestMapping(value = "/registerUser", method=RequestMethod.GET)
-	public String registerPage(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
+	public String registerPage1(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
 		System.out.println("Entering the register controller 1");
 		Map<String,String[]> parameters = req.getParameterMap();
 		System.out.println(req.getParameter("email"));
@@ -31,10 +39,21 @@ public class LoginController {
 	
 	@RequestMapping(value = "/register", method=RequestMethod.GET)
 	public String register(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
+		System.out.println("Application Context is set !!! "+ applicationContext);
+		LoginService loginService = (LoginService) applicationContext.getBean("loginService");
 		System.out.println("Entering the register controller");
-		Map<String,String[]> parameters = req.getParameterMap();
-		System.out.println(parameters);
-		model.addAttribute("success","Logged in Succesfully");
+		System.out.println(req.getParameter("email") + " - "+ req.getParameter("password"));
+		User user = new User();
+		user.setEmail(req.getParameter("email"));
+		user.setPassword(req.getParameter("password"));
+		loginService.addUser(user);
+		return "hello";
+	}
+	
+	@RequestMapping(value = "/registerPage", method=RequestMethod.GET)
+	public String registerPage(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
+		System.out.println("Entering the register controller");
+
 		return "user/registration";
 	}
 	
@@ -64,23 +83,11 @@ public class LoginController {
 		return validUser;
 	}
 	
-	public static void main(String args[]) {
-		int n =2;
-		int fibonacciResult[] = new int[n];
-		
-		if(n<2) {
-			System.out.println("The number should be greater than 2");
-			System.exit(0);
-		}
-		fibonacciResult[0]=0;
-		fibonacciResult[1]=1;
-		for(int i=2 ;i<n;i++) {
-			fibonacciResult[i] = fibonacciResult[i-1] + fibonacciResult[i-2];
-		}
-		for(int i=0;i<n;i++) {
-			System.out.print(fibonacciResult[i]+",");
-		}
-		
-		
+	@Override
+	@Autowired
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		// TODO Auto-generated method stub
+		this.applicationContext =  applicationContext;
+		System.out.println("Application Context is set !!! "+ applicationContext);
 	}
 }

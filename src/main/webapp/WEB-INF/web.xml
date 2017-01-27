@@ -19,17 +19,19 @@
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
+  
+   	
+  <servlet-mapping>
+  	 <servlet-name>credentials</servlet-name>
+  	 <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     	<param-value>
         	/WEB-INF/ApplicationContext.xml
     	</param-value>
 	</context-param>
-   	
-  <servlet-mapping>
-  	 <servlet-name>credentials</servlet-name>
-  	 <url-pattern>/</url-pattern>
-  </servlet-mapping>
   
   <context-param>
   	<param-name>contextConfigLocation</param-name>

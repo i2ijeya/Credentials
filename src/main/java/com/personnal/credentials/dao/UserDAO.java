@@ -14,4 +14,5 @@ import com.personnal.credentials.model.User;
 public interface UserDAO {
 	public void save(User user);
 	public List<User> listUser();
+	public void insert(User user);
 }

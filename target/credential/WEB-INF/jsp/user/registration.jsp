@@ -42,31 +42,31 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
-				<form class="form-signin">
+				<form class="form-signin" action="/credential/login">
 					<h2 class="form-signin-heading">Sign In</h2>
-					<input type="email" class="form-control"
+					<input id="exisintg_email" type="email" class="form-control"
 						placeholder="Email address"> 
-						<input type="password" class="form-control" placeholder="Password" required> 
+						<input id="exisintg_password" type="password" class="form-control" placeholder="Password" required> 
 						<a href="/ExpenseProject/test"> Forgot Password </a>
 						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 				</form>			
 				
 			</div>
 			<div class="col-md-4">
-				<form class="form-signin" action="/credential/registerUser" method="get">
+				<form class="form-signin" action="/credential/register" method="get">
 					<h2 class="form-signin-heading">Register Here</h2>
 					<input type="text" class="form-control"
 						placeholder="Name" style="margin-bottom: 10px;" required>
 						
-						<input type="email" class="form-control" name="email"
+						<input id="email" type="email" class="form-control" name="email"
 						placeholder="Email-Id" style="margin-bottom: 10px;" required>
-					<input
+					<input id="password"
 						type="password" class="form-control" placeholder="New Password" name="new_password"
 						required>
 					<input
 						type="password" class="form-control" placeholder="Retype Password" name="retype_password"
 						required>
-					<input
+					<input 
 						type="text" class="form-control" placeholder="Phone" name="phone"
 						required>
 					<br>
