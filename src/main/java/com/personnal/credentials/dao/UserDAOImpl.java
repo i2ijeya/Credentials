@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 
 import com.personnal.credentials.model.User;
 
-public class UserImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO{
 	
 	private SessionFactory sessionFactory;
 	
