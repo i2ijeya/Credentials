@@ -4,7 +4,7 @@
 	<property name="project.dir" value="." />
 	<property name="build.dir" value="${project.dir}/target" />
 	<property name="maven.home" value="C:/Jeya/Softwares/apache-maven-3.3.3" />
-<!--	<property name="maven.home" value="/usr/local/Cellar/maven/3.3.9" /> -->
+	<!--	<property name="maven.home" value="/usr/local/Cellar/maven/3.3.9" /> -->
 	<property name="war.filename" value="credential" />
 	<property name="war.path" value="${build.dir}/credential.war" />
 	<!--	<property name="jboss.home" value="C:\Jeya\Softwares\jboss-as-7.1.1.Final" /> -->
@@ -15,14 +15,14 @@
 	<!-- <property name="tomcat.home" value="/Jeya/Tools/apache-tomcat-7.0.67" /> -->
 	<property name="tomcat.deployments.dir" value="${tomcat.home}/webapps" />
 	<property name="tomcat.bin.dir" value="${tomcat.home}/bin" />
-	
+
 	<target name="buildProject" depends="stop-tomcat" description="Builds the individual project">
 		<exec dir="." executable="cmd">
 			<arg value="/C"/>
 			<arg value="${maven.home}/bin/mvn"/>
 			<arg line="clean install" />
 		</exec>
-<!--		<exec dir="." executable="sh">
+		<!--		<exec dir="." executable="sh">
 			<arg value="${maven.home}/bin/mvn"/>
 			<arg line="clean install" />
 		</exec> -->
@@ -40,32 +40,32 @@
 		<delete dir="${tomcat.deployments.dir}/${war.filename}"/>
 		<copy file="${war.path}" todir="${tomcat.deployments.dir}"/>
 	</target>
-<!-- 	Start Tomcat -->
-		<target name="deploy-tomcat" depends="build-tomcat" description="Starts Tomcat" >
+	
+	<!-- 	Start Tomcat -->
+	<target name="deploy-tomcat" depends="build-tomcat" description="Starts Tomcat" >
 		<!--	<exec dir="${tomcat.bin.dir}" executable="sh">
 				<arg line="./startup.sh"/>
 		    </exec> -->
-			<exec dir="${tomcat.bin.dir}" executable="cmd">
-				<arg value="/C"/>
-				<arg line="startup.bat" />
-			</exec>
-		</target>
-	
+		<exec dir="${tomcat.bin.dir}" executable="cmd">
+			<arg value="/C"/>
+			<arg line="startup.bat" />
+		</exec>
+	</target>
+
 	<!-- 	Start Tomcat -->
-			<target name="stop-tomcat" description="Starts Tomcat" >
-	<!--			<exec dir="${tomcat.bin.dir}" executable="sh">
+	<target name="stop-tomcat" description="Starts Tomcat" >
+		<!--			<exec dir="${tomcat.bin.dir}" executable="sh">
 					<arg line="sh"/>
 			    </exec> -->
-				<exec dir="${tomcat.bin.dir}" executable="cmd">
-					<arg value="/C"/>
-					<arg line="shutdown.bat" />
-				</exec>
-			</target>
-	<!-- 	Start Jboss
+		<exec dir="${tomcat.bin.dir}" executable="cmd">
+			<arg value="/C"/>
+			<arg line="shutdown.bat" />
+		</exec>
+	</target>
+	<!-- 	Start Jboss -->
 	<target name="start-jboss" depends="buildProject, deploy" description="Starts JBOSS" >
-	    <exec executable="${jboss.bin.dir}/standalone.bat" spawn="true">
-	        <arg line="-S" />
-	    </exec>
-	    
-	</target> -->
+		<exec executable="${jboss.bin.dir}/standalone.bat" spawn="true">
+			<arg line="-S" />
+		</exec>
+	</target>
 </project>

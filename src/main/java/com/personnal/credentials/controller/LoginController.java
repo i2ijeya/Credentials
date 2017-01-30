@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,14 @@ import com.personnal.credentials.service.LoginService;
 @Controller
 public class LoginController implements ApplicationContextAware{
 	private ApplicationContext applicationContext;  
+	private LoginService loginService;
+	
+	@Autowired(required=true)
+	@Qualifier(value="loginService")
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
+	
 	public LoginController() {
 		System.out.println("Login Controller Cons");
 	}
@@ -37,14 +46,18 @@ public class LoginController implements ApplicationContextAware{
 	
 	@RequestMapping(value = "/register", method=RequestMethod.GET)
 	public String register(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
-		System.out.println("Application Context is set !!! "+ applicationContext);
+		/*System.out.println("Application Context is set !!! "+ applicationContext);
 		LoginService loginService = (LoginService) applicationContext.getBean("loginService");
 		System.out.println("Entering the register controller");
 		System.out.println(req.getParameter("email") + " - "+ req.getParameter("password"));
 		User user = new User();
 		user.setEmail(req.getParameter("email"));
 		user.setPassword(req.getParameter("password"));
-		loginService.addUser(user);
+		loginService.registerUser(user);*/
+		User user = new User();
+		user.setEmail(req.getParameter("email"));
+		user.setPassword(req.getParameter("password"));
+		this.loginService.registerUser(user);
 		return "hello";
 	}
 	

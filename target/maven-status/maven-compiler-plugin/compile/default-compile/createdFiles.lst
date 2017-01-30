@@ -1,13 +1,15 @@
 EncryptExample.class
-com\personnal\credentials\config\WebConfig.class
 com\StringRepeat.class
+com\personnal\credentials\config\WebConfig.class
 com\personnal\credentials\controller\LoginController.class
 com\ValueComparator.class
 com\personnal\credentials\controller\UserController.class
 com\personnal\credentials\dao\UserDAO.class
 com\personnal\credentials\service\LoginService.class
+com\personnal\credentials\dao\UserDAOImpl.class
 com\personnal\credentials\manager\LoginManager.class
+com\personnal\credentials\service\LoginServiceImpl.class
 com\personnal\credentials\util\EncryptPassword.class
+com\personnal\credentials\util\SpringContextUtil.class
 com\personnal\credentials\manager\LoginManagerImpl.class
-com\personnal\credentials\dao\UserImpl.class
 com\personnal\credentials\model\User.class
