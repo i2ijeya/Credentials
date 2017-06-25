@@ -81,7 +81,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<form class="form-signin" action="/credential/register" method="get">
+					<form class="form-signin" action="/credential/registerPage" method="get">
 						<h2 class="form-signin-newuser">New User?</h2>
 						<button type="submit" id="register_button" class="btn btn-mini">Register</button>
 					</form>

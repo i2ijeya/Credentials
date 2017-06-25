@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +20,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.personnal.credentials.model.User;
 import com.personnal.credentials.service.LoginService;
+import com.personnal.credentials.service.LoginServiceImpl;
 
 @Controller
 public class LoginController implements ApplicationContextAware{
 	private ApplicationContext applicationContext;  
-	private LoginService loginService;
+	private LoginServiceImpl loginService;
 	
-	@Autowired(required=true)
-	@Qualifier(value="loginService")
-	public void setLoginService(LoginService loginService) {
+	//@Autowired(required=true)
+	//@Qualifier(value="loginService")
+	public void setLoginService(LoginServiceImpl loginService) {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Login Service initialized ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~````");
 		this.loginService = loginService;
 	}
-	
+		
 	public LoginController() {
 		System.out.println("Login Controller Cons");
 	}
@@ -40,20 +43,6 @@ public class LoginController implements ApplicationContextAware{
 		System.out.println("Entering the register controller 1");
 		Map<String,String[]> parameters = req.getParameterMap();
 		System.out.println(req.getParameter("email"));
-		model.addAttribute("success","Logged in Succesfully");
-		return "hello";
-	}
-	
-	@RequestMapping(value = "/register", method=RequestMethod.GET)
-	public String register(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
-		/*System.out.println("Application Context is set !!! "+ applicationContext);
-		LoginService loginService = (LoginService) applicationContext.getBean("loginService");
-		System.out.println("Entering the register controller");
-		System.out.println(req.getParameter("email") + " - "+ req.getParameter("password"));
-		User user = new User();
-		user.setEmail(req.getParameter("email"));
-		user.setPassword(req.getParameter("password"));
-		loginService.registerUser(user);*/
 		User user = new User();
 		user.setEmail(req.getParameter("email"));
 		user.setPassword(req.getParameter("password"));
@@ -61,10 +50,14 @@ public class LoginController implements ApplicationContextAware{
 		return "hello";
 	}
 	
+	@RequestMapping(value = "/register", method=RequestMethod.GET)
+	public String register(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
+		return "hello";
+	}
+	
 	@RequestMapping(value = "/registerPage", method=RequestMethod.GET)
 	public String registerPage(HttpServletRequest req, HttpServletResponse resp, ModelMap model) {
 		System.out.println("Entering the register controller");
-
 		return "user/registration";
 	}
 	

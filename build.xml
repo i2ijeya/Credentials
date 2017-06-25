@@ -35,7 +35,7 @@
 		<touch file="${jboss.deployments.dir}/${war.filename}.war.dodeploy"/>
 	</target>
 
-	<target name="build-tomcat" depends="buildProject" description="Builds war file and deploy in JBOSS">
+	<target name="build-tomcat" depends="buildProject" description="Builds war file and deploy in Tomcat">
 		<delete file="${tomcat.deployments.dir}/${war.filename}.war"/>
 		<delete dir="${tomcat.deployments.dir}/${war.filename}"/>
 		<copy file="${war.path}" todir="${tomcat.deployments.dir}"/>

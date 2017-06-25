@@ -53,7 +53,7 @@
 				
 			</div>
 			<div class="col-md-4">
-				<form class="form-signin" action="/credential/register" method="get">
+				<form class="form-signin" action="/credential/registerUser" method="get">
 					<h2 class="form-signin-heading">Register Here</h2>
 					<input type="text" class="form-control"
 						placeholder="Name" style="margin-bottom: 10px;" required>
